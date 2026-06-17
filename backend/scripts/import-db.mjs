@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config({ path: path.join(path.dirname(fileURLToPath(import.meta.url)), "../.env") });
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const sqlPath = path.join(__dirname, "../../Preparatoria.sql");
+const sqlPath = path.join(__dirname, "../../Preparatoria_v3.sql");
 
 function splitStatements(sql) {
   return sql
@@ -42,7 +42,7 @@ async function main() {
   const conn = await mysql.createConnection({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
+    password: process.env.DB_PASSWORD || "12345678",
     multipleStatements: true,
   });
 
