@@ -1,6 +1,7 @@
 import { Router } from "express";
 import pool from "../db.js";
 import { authenticate, authorize } from "../middleware/auth.js";
+import { validateEmail, validatePhone, validateCURP, validateBirthDate, validateName } from "../middleware/validation.js";
 
 const router = Router();
 router.use(authenticate, authorize("ADMIN"));
@@ -21,13 +22,24 @@ router.get("/estudiantes", async (_req, res) => {
   }
 });
 
-router.post("/estudiantes", async (req, res) => {
+router.post("/estudiantes", validateName("nombre"), validateName("apellido"), validateEmail(), validatePhone(), validateCURP(), validateBirthDate(), async (req, res) => {
   const { nombre, apellido, email, telefono, curp, fecha_nacimiento } = req.body;
   if (!nombre || !apellido || !email || !curp || !fecha_nacimiento) {
     return res.status(400).json({ error: "Faltan campos obligatorios" });
   }
 
+  // Validar que el nombre completo (nombre + apellido) no esté duplicado en alumnos activos
   try {
+    const [duplicates] = await pool.query(
+      `SELECT COUNT(*) AS cnt FROM alumnos
+       WHERE LOWER(CONCAT(nombre_alumno, ' ', apellido_alumno)) = LOWER(CONCAT(?, ?))
+         AND activo = TRUE`,
+      [nombre.trim(), apellido.trim()]
+    );
+    if (duplicates[0].cnt > 0) {
+      return res.status(409).json({ error: "Ya existe un estudiante con ese nombre y apellido" });
+    }
+
     const [result] = await pool.query(
       `CALL crear_cuenta('ALUMNO', ?, ?, ?, ?, ?, ?, NULL)`,
       [nombre, apellido, email, telefono || null, fecha_nacimiento, curp]
@@ -75,13 +87,24 @@ router.get("/maestros", async (_req, res) => {
   }
 });
 
-router.post("/maestros", async (req, res) => {
+router.post("/maestros", validateName("nombre"), validateName("apellido"), validateEmail(), validatePhone(), validateCURP(), async (req, res) => {
   const { nombre, apellido, email, telefono, curp, titulo } = req.body;
   if (!nombre || !apellido || !email || !curp) {
     return res.status(400).json({ error: "Faltan campos obligatorios" });
   }
 
   try {
+    // Validar que el nombre completo no esté duplicado en maestros activos
+    const [duplicates] = await pool.query(
+      `SELECT COUNT(*) AS cnt FROM maestros
+       WHERE LOWER(CONCAT(nombre_maestro, ' ', apellido_maestro)) = LOWER(CONCAT(?, ?))
+         AND activo = TRUE`,
+      [nombre.trim(), apellido.trim()]
+    );
+    if (duplicates[0].cnt > 0) {
+      return res.status(409).json({ error: "Ya existe un maestro con ese nombre y apellido" });
+    }
+
     const [result] = await pool.query(
       `CALL crear_cuenta('MAESTRO', ?, ?, ?, ?, '1980-01-01', ?, ?)`,
       [nombre, apellido, email, telefono || null, curp, titulo || null]

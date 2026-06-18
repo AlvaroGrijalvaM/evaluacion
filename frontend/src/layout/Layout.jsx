@@ -13,16 +13,17 @@ export default function Layout() {
 
   return (
     <div className="min-h-[100dvh] page-bg">
-      <header className="header-primary px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-semibold">Sistema de Evaluación — Preparatoria</h1>
+      <header className="header-primary px-6 py-4 flex justify-between items-center flex-wrap gap-2">
+        <h1 className="text-2xl font-semibold">Sistema de Evaluación</h1>
         {user && (
-          <div className="flex items-center gap-4 text-sm">
+          <div className="flex items-center gap-4 text-sm flex-wrap">
             <span>
               {user.nombre} {user.apellido} ({user.tipo})
             </span>
-              <button
-              onClick={handleLogout}
-              className="btn-primary">
+            <Link to="/cambiar-password" className="btn-primary text-xs">
+              Cambiar contraseña
+            </Link>
+            <button onClick={handleLogout} className="btn-primary">
               Cerrar sesión
             </button>
           </div>
@@ -46,8 +47,8 @@ export default function Layout() {
         )}
         {user?.tipo === "ALUMNO" && (
           <nav className="flex gap-3">
-            <NavLink to="/alumno/calificaciones">Calificaciones</NavLink>
-            <NavLink to="/alumno/credencial">Credencial</NavLink>
+            <NavLink to="/alumno/calificaciones">Ver calificaciones</NavLink>
+            <NavLink to="/alumno/credencial">Credencial digital</NavLink>
           </nav>
         )}
         {user?.tipo === "MAESTRO" && (

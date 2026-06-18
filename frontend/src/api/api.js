@@ -37,6 +37,8 @@ export const authApi = {
   login: (email, password) =>
     apiFetch("/auth/login", { method: "POST", body: JSON.stringify({ email, password }) }),
   me: () => apiFetch("/auth/me"),
+  cambiarPassword: (data) =>
+    apiFetch("/auth/cambiar-password", { method: "POST", body: JSON.stringify(data) }),
 };
 
 export const adminApi = {

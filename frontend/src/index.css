@@ -5,13 +5,13 @@
 @layer components {
   /* === BOTONES === */
   .btn-primary {
-    @apply bg-[#2E7D32] hover:bg-[#1B5E20] text-white px-4 py-2 rounded-md disabled:opacity-50;
+    @apply bg-[#1B2A4A] hover:bg-[#0F1B33] text-[#C9A84C] px-4 py-2 rounded-md disabled:opacity-50;
   }
   .btn-danger {
     @apply bg-[#c62828] hover:bg-[#b71c1c] text-white px-3 py-1 rounded text-sm;
   }
   .btn-dark {
-    @apply bg-[#37474F] hover:bg-[#263238] text-white px-4 py-2 rounded-md;
+    @apply bg-[#1B2A4A] hover:bg-[#0F1B33] text-[#C9A84C] px-4 py-2 rounded-md;
   }
 
   /* === TARJETAS === */
@@ -19,12 +19,12 @@
     @apply bg-white rounded-lg shadow p-6 text-left;
   }
   .card-title {
-    @apply text-xl text-[#212121] mb-4 font-semibold;
+    @apply text-xl text-[#1B2A4A] mb-4 font-semibold;
   }
 
   /* === FORMULARIOS === */
   .input-field {
-    @apply mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#4CAF50] focus:border-transparent;
+    @apply mt-1 w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-transparent;
   }
   .label-text {
     @apply text-sm text-gray-600;
@@ -32,7 +32,7 @@
 
   /* === TABLAS === */
   .table-header {
-    @apply bg-[#37474F] text-white p-2 text-left;
+    @apply bg-[#1B2A4A] text-[#C9A84C] p-2 text-left;
   }
   .table-row {
     @apply border-b border-gray-200 hover:bg-gray-100;
@@ -57,40 +57,40 @@
     @apply bg-gray-100;
   }
   .header-primary {
-    @apply bg-[#1B5E20] text-white;
+    @apply bg-[#1B2A4A] text-[#C9A84C];
   }
   .text-primary {
-    @apply text-[#212121];
+    @apply text-[#1B2A4A];
   }
 
   /* === NAVEGACIÓN === */
   .nav-link {
-    @apply rounded-md px-4 py-2 bg-[#546E7A] text-white hover:bg-[#37474F];
+    @apply rounded-md px-4 py-2 bg-[#1B2A4A] text-[#C9A84C] hover:bg-[#0F1B33];
   }
 
   /* === BREADCRUMB === */
   .breadcrumb-link {
-    @apply cursor-pointer hover:bg-[#E8F5E9] hover:text-[#1B5E20] p-4 rounded-md;
+    @apply cursor-pointer hover:bg-[#F5F0E0] hover:text-[#1B2A4A] p-4 rounded-md;
   }
   .breadcrumb-link-active {
-    @apply bg-[#2E7D32] text-white;
+    @apply bg-[#1B2A4A] text-[#C9A84C];
   }
   .breadcrumb-link-parent {
-    @apply bg-[#E8F5E9] text-[#1B5E20];
+    @apply bg-[#F5F0E0] text-[#1B2A4A];
   }
 
   /* === DASHBOARD LINKS === */
   .dashboard-link {
-    @apply block p-4 rounded-md border border-gray-200 hover:bg-[#E8F5E9] hover:border-[#4CAF50] text-[#212121];
+    @apply block p-4 rounded-md border border-gray-200 hover:bg-[#F5F0E0] hover:border-[#C9A84C] text-[#1B2A4A];
   }
 }
 
 /* =========================================================
-   Estilos base del layout — ANCHO COMPLETO
+   Estilos base del layout
    ========================================================= */
 :root {
   --text: #616161;
-  --text-h: #212121;
+  --text-h: #1B2A4A;
   --bg: #ffffff;
   --border: #e0e0e0;
 

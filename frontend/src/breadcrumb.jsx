@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 
 function Arrow() {
-  return <span className="text-[#37474F] text-xl select-none">›</span>;
+  return <span className="text-[#1B2A4A] text-xl select-none">›</span>;
 }
 
 const CRUMB = {
@@ -47,7 +47,7 @@ export default function Breadcrumb() {
 
   return (
     <div className="bg-white w-full">
-      <ul className="flex border p-2 gap-6 text-xl text-[#37474F] items-center flex-wrap justify-center">
+      <ul className="flex border p-2 gap-6 text-xl text-[#1B2A4A] items-center flex-wrap justify-center">
         <Link
           to="/dashboard"
           className={`breadcrumb-link ${location.pathname === "/dashboard" ? "breadcrumb-link-active" : ""}`}>
