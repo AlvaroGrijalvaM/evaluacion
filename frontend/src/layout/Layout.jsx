@@ -14,16 +14,16 @@ export default function Layout() {
   return (
     <div className="min-h-[100dvh] page-bg">
       <header className="header-primary px-6 py-4 flex justify-between items-center flex-wrap gap-2">
-        <h1 className="text-2xl font-semibold">Sistema de Evaluación</h1>
+        <h1 className="text-2xl font-semibold text-[#C9A84C]">Sistema de Evaluación</h1>
         {user && (
           <div className="flex items-center gap-4 text-sm flex-wrap">
             <span>
               {user.nombre} {user.apellido} ({user.tipo})
             </span>
-            <Link to="/cambiar-password" className="btn-primary text-xs">
+            <Link to="/cambiar-password" className="btn-inverted text-xs">
               Cambiar contraseña
             </Link>
-            <button onClick={handleLogout} className="btn-primary">
+            <button onClick={handleLogout} className="btn-inverted">
               Cerrar sesión
             </button>
           </div>
